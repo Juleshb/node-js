@@ -1,4 +1,4 @@
-import Message from "../.vscode/models/messageModel.js";
+import Message from "../models/messageModel.js"
 export const createMessage=async(req,res)=>{
 try {
     const newMessage=await Message.create(req.body)

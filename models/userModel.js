@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator"
 const userSchema=new mongoose.Schema({
-    fullName:{
+    name:{
         type:String,
       //  required:[true,"this field is required"]
         

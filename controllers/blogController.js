@@ -1,4 +1,4 @@
-import Blog from "../.vscode/models/blogModel.js";
+import Blog from "../models/blogModel.js"
 export const createBlog=async(req,res)=>{
     try {
         const newBlog=await Blog.create(req.body)

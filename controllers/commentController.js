@@ -1,4 +1,4 @@
-import Comment from "../.vscode/models/commentModel.js";
+import Comment from "../models/commentModel.js";
 export const createComment = async(req, res) => {
     try {
         const newComment = await Comment.create({

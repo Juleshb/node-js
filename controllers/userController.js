@@ -1,4 +1,4 @@
-import User from "../.vscode/models/usermodel.js";
+import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 export const createUser=async(req,res)=>{
