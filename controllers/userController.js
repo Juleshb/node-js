@@ -1,6 +1,12 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config({
+    path:"../config.env"
+})
+const secrt = process.env.SEC_TOKEN
+
 export const createUser=async(req,res)=>{
     try {
         const salt = await bcrypt.genSalt(10)
@@ -110,7 +116,7 @@ export const createUser=async(req,res)=>{
                                     //res.status(200).json({ Message: "User successfully logged in!!" });
                                     res.status(200).json({
                                         message: "User logged in successfully",
-                                        token: jwt.sign({ email: user.email, fullName: user.name, _id: user._id }, 'RESTFULAPIs')
+                                        token: jwt.sign({ email: user.email, fullName: user.name, _id: user._id }, 'iamjules')
                                     });
                                 } else {
                                     res.status(400).json({ Error: "Invalid Password!!" });
@@ -119,6 +125,6 @@ export const createUser=async(req,res)=>{
                                 res.status(401).json({ Error: "User does not exist!!" });
                             }
                         } catch (error) {
-                            res.status(404).json({ Error: "Internal error" })
+                            res.status(404).json({ Error: "Internal error"})
                         }
                     }
