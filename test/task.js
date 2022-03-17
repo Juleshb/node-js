@@ -3,9 +3,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import express from 'express';
 import server from '../index.js';
-
 // assertion style
-chai.should();
+const should= chai.should();
 
 chai.use(chaiHttp);
 
