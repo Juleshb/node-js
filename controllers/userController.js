@@ -14,6 +14,7 @@ export const createUser=async(req,res)=>{
         const newUser=await User.create({
             fullName: req.body.name,
             email: req.body.email,
+            role: req.body.role,
             password: pwd,
         })
         res.status(201).json({

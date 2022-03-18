@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-import { Jwt } from "jsonwebtoken";
+import jwt  from "jsonwebtoken";
 import { promisify } from "util";
 
 
@@ -20,9 +20,24 @@ const checkUser = async (req, res, next) => {
         req.user=gotUser
     } catch (error) {
         res.status(401).json({
-            message:"😛"
+            message:"login first"
         })
 
     }
     next()
 }
+
+
+
+const restrictTo = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(401).json({
+                Status: "UNAUTHORIZED!",
+                Message: 'You do not have access to this role.'
+            });
+        }
+        next()
+    }
+}
+export {checkUser, restrictTo}
