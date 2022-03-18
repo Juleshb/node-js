@@ -122,7 +122,7 @@ export const createUser=async(req,res)=>{
                                     res.status(400).json({ Error: "Invalid Password!!" });
                                 }
                             } else {
-                                res.status(401).json({ Error: "User does not exist!!" });
+                                res.status(401).json({ Error: "User does not exist!" });
                             }
                         } catch (error) {
                             res.status(404).json({ Error: "Internal error"})
