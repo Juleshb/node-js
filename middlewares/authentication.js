@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-import { Jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { promisify } from "util";
 
 
@@ -26,3 +26,4 @@ const checkUser = async (req, res, next) => {
     }
     next()
 }
+export {checkUser}
