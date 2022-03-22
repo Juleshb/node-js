@@ -117,7 +117,8 @@ export const createUser=async(req,res)=>{
                                     //res.status(200).json({ Message: "User successfully logged in!!" });
                                     res.status(200).json({
                                         message: "User logged in successfully",
-                                        token: jwt.sign({ email: user.email, fullName: user.name, _id: user._id }, 'iamjules')
+                                        token: jwt.sign({ email: user.email, fullName: user.name, _id: user._id }, 'iamjules'),
+                                        role:user.role
                                     });
                                 } else {
                                     res.status(400).json({ Error: "Invalid Password!!" });

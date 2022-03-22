@@ -15,7 +15,7 @@ const checkUser = async (req, res, next) => {
         const decoded = await promisify(jwt.verify)(token,  'iamjules')
         const gotUser = await User.findById(decoded._id)
         if(!gotUser){
-            return res.status(401).json({ message: 'uder does not exit' })
+            return res.status(401).json({ message: 'user does not exit' })
         }
         req.user=gotUser
     } catch (error) {
