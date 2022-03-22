@@ -1,9 +1,11 @@
 import mongoose from "mongoose"
+import swaggertest from "./swagger/doc.js"
 import app from "./index.js"
 import dotenv from "dotenv"
 dotenv.config({
     path:"./config.env"
 })
+app.use('/api-docs',swaggertest)
 const DB_URL=process.env.DATABASE.replace("<password>",process.env.PASSWORD)
 const PORT=process.env.PORT||4555
 mongoose.connect(DB_URL).then(()=>console.log("database connected successfully"))
