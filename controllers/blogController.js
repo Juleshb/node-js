@@ -9,8 +9,9 @@ export const createBlog=async(req,res)=>{
             }
         })
     } catch (error) {
+        console.log(error.message)
         res.status(400).json({
-            message:"error occured",
+            message:error.message,
             data:{
                 error
             }
