@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <TItle>Adimin</TItle>
+    
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+        <link rel="stylesheet" href="dstyle.css">
+
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <h1></span>Jules hb 250</h1>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dash.html"><span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="active"><span class="las la-clipboard-list"></span>
+                        <span>Add blogs</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="userControll.html" class=""><span class="las la-users"></span>
+                        <span>userControll</span></a>
+                    </li>
+                    <li>
+                        <a href="mes.html"><span class="las la-comment"></span>
+                        <span>Messages</span></a>
+                    </li>
+                    <li>
+                        <a href="users.html"><span class="las la-user-circle"></span>
+                        <span>Users</span></a>
+                    </li>
+                    <li>
+                        <a href="/index.html"><span class="las la-home"></span>
+                        <span>View page</span></a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="logout()"><span class="las la-sign"></span>
+                        <span>Log out</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+        <header>
+            <h1>
+                <label for="">
+                  <span class="las la-bars"></span> 
+                </label>
+                Dashboard
+            </h1>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="search here"/>
+
+            </div>
+            <div class="user-wrapper">
+                <img src="kk.jpg" width="30px" alt="Adimin">
+                <div>
+                    <h4>Jules hb</h4>
+                    <small>Adimin</small>
+                </div>
+
+            </div>
+        </header>
+        <main>
+            <div class="cards">
+                <form id="post">
+                <div class="form">
+                    
+                    <input type="Text" name="title" placeholder="Enter blog title" id="title">
+                    <input type="text" name="photo" placeholder="Image URL" id="photo">
+                    <input type="text" name=" description" placeholder="Enter blog  Description here"id="description">
+                   
+                    <br>
+                    <p>Add content</p>
+                    <textarea name="content" rows="10" cols="30" placeholder="text here body" id="body">
+                        
+                        </textarea>
+                    <button class="btnn" id="addPost">Publish</button>
+                </div>
+                </form>
+                
+                
+
+
+            </div> 
+         
+        </main>
+        </div>
+        <script>
+
+        
+
+
+                
+            
+            
+let photo = document.getElementById('photo');
+            let title = document.getElementById('title');
+            let body = document.getElementById('body');
+            let description = document.getElementById('description');
+         
+
+const addPost = async ( ) =>{
+    fetch("https://my-bland.herokuapp.com/api/v1/blogs", {
+       method: 'POST', 
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({photo:photo.value, title:title.value, body:body.value,description:description.value})
+   });
+
+  //const data = await response.json( );
+
+  // now do whatever you want with the data  
+   //console.log(data);
+   
+};
+
+
+document.getElementById('addPost').addEventListener
+        ('click', (e) => { e.preventDefault()
+
+            addPost(); 
+            
+            alert("Data Inserted");
+      location.href = "dash.html#";
+        })
+      
+</script>
+<script src="auth.js"></script>
+       
+    </body>
+</html>

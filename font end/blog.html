@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>
+      Blog
+    </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CSS  -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="bstyle.css">
+        <!-- icon link-->
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+            
+        
+    </head>
+    <body>
+        <center>
+        <nav>
+            <div class="nav-bar">
+               
+                <span class="logo navLogo"><a href="index.html">Jules hb 250</a></span>
+    
+                <div class="menu">
+                    
+                    <ul class="nav-links">
+                         <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Skill</a></li>
+                        <li><a href="index.html">services</a></li>
+                        <li><a href="index.html">Contact me</a></li>
+                        <li><a href="blog.html">My blog</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+    
+               
+            </div>
+        </nav>
+        
+    </div>
+</div> 
+
+<div class="about" id="bout">
+    
+    <h2>Wellcome to my Blog </h2>
+</div>
+        
+    
+    
+                    </div>
+                    <div class="recent-grid">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Recent Belog</h3>
+                                <button>See all <span class="las la-arrow-right"></span></button> 
+    
+                            </div>
+                           
+                               
+                               <div class="project" id="pr">
+                                
+                                
+                            
+                                
+    
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </center>
+                    <script>
+                        
+                        function getdataOnIndex()  {
+                           var posts_div = document.getElementById("pr");
+                           const readMore = document.getElementById('more');
+                           var dataToDisplay = "";
+                           var requestOptions = {
+                               method: 'GET',
+                               redirect: 'follow'
+                             };
+                             fetch("https://my-bland.herokuapp.com/api/v1/blogs", requestOptions)
+                               .then(response => response.json())
+                               .then(result => {
+                                   console.log(result.data.blogs)
+                                       result.data.blogs.forEach(element=>{
+                                           dataToDisplay += `
+                                           <div class="project" id="pr">
+                                                <center>
+                                                    <p>
+                                                    <img src="${element.photo}" width="90px" height="80px"/><br>
+                                                    <b>${element.title}</b><br>
+                                                    ${element.description}<br>
+                                                    ${element.createdAt}
+                                                    <button class="like" id="more">Read More</button>
+                                                    
+                                                    </p>
+                                                </center>
+                                            </div>
+                                                        `;
+                                       })
+                                       posts_div.innerHTML = dataToDisplay;
+                                   //  console.log(blogs)
+                               })
+                               .catch(error => console.log('error', error));
+                    
+                               readMore.addEventListener('click', (e) => {
+              e.preventDefault();
+              location.href = "more.html#"+id;
+          })
+                            } window.onload=getdataOnIndex();
+
+        
+
+
+
+                   </script>
+                    </body>
+                    </html>

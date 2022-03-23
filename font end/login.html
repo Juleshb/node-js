@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>my login</title>
+
+        
+       
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CSS  -->
+        <link rel="stylesheet" href="style.css">
+            
+        
+    </head>
+    <body>
+        <center>
+        <nav>
+            <div class="nav-bar">
+               
+                <span class="logo navLogo"><a href="index.html">Jules hb 250</a></span>
+    
+    
+               
+            </div>
+        </nav>
+        
+    </div>
+</div> 
+
+<div class="about" id="bout">
+    
+    
+    
+<div class="form">
+    <form id="logi-form" name="login-form">
+    <h2>Login form</h2>
+    <input type="email" id="email" name="email" placeholder="Enter Email Here">
+    <br>
+    <input type="password" id="password" name="password" placeholder="Enter your password here">
+    <br>
+   
+   <button class="btnn" id="loginform">Login</button>
+    <p>If you dont hava an account create new account <a href="signup.html">here</a></p>
+</form>
+
+</div>
+</div>
+</center>
+<script>
+    const form = document.querySelector('#logi-form');
+    form.addEventListener('submit', async(e) => {
+          e.preventDefault()
+          try {
+              const resp = await fetch('https://my-bland.herokuapp.com/api/v1/login', {
+                  method: 'POST',
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      email: form.email.value,
+                      password: form.password.value
+                  })
+              })
+              const data = await resp.json()
+                  console.log("resp")
+              if (resp.status == 200) {
+                  swal('success', data.message, 'success').then(() => {
+                      localStorage.setItem('token', 'Bearer '+ data.token)
+                      console.log(data.role)
+                      if (data.role == 'admin') {
+                        window.location.assign('Dashboard/dash.html');
+                      }
+                      if (data.role == 'user') {
+                        window.location.assign('Dashboard/dash.html');
+                      }
+                  })
+              }
+              // const data = await resp.json()
+              if (resp.status == 400) {
+                  swal('error', data.Error, 'error')
+              }
+              if (resp.status == 401) {
+                  swal('error', data.Error, 'error')
+              }
+              if (resp.status == 404) {
+                  swal('error', data.Message, 'error')
+              }
+          } catch (error) {
+          }
+      })
+  </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>

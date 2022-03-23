@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <TItle>Adimin</TItle>
+       
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+        <link rel="stylesheet" href="dstyle.css">
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <h1><!--<span class="lab la-accusoft">--></span>Jules hb 250</h1>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dash.html" ><span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="postblog.html"><span class="las la-clipboard-list"></span>
+                        <span>Post Blog</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="userControll.html" class=""><span class="las la-users"></span>
+                        <span>userControll</span></a>
+                    </li>
+                    <li>
+                        <a href="mes.html"><span class="las la-comment"></span>
+                        <span>Messages</span></a>
+                    </li>
+                    <li>
+                        <a href="" class="active"><span class="las la-user-circle"></span>
+                        <span>Users</span></a>
+                    </li>
+                    <li>
+                        <a href="/index.html"><span class="las la-home"></span>
+                        <span>View page</span></a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="logout()"><span class="las la-sign"></span>
+                        <span>Log out</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+        <header>
+            <h1>
+                <label for="">
+                  <span class="las la-bars"></span> 
+                </label>
+                Dashboard
+            </h1>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="search here"/>
+
+            </div>
+            <div class="user-wrapper">
+                <img src="kk.jpg" width="30px" alt="Adimin">
+                <div>
+                    <h4>Jules hb</h4>
+                    <small>Adimin</small>
+                </div>
+
+            </div>
+        </header>
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                <div>
+                    <h1>54</h1>
+                    <span>Customers</span>
+                </div>
+                <div>
+                    <span class="las la-users"></span>
+                </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>Blogs</span>
+                    </div>
+                    <div>
+                        <span class="las la-clipboard-list"></span>
+                    </div>
+                </div>
+
+                    <div class="card-single">
+                        <div>
+                            <h1>54</h1>
+                            <span>Comments</span>
+                        </div>
+                        <div>
+                            <span class="las la-comment"></span>
+                        </div>
+                    </div>
+
+                        <div class="card-single">
+                            <div>
+                                <h1>54k</h1>
+                                <span>Likes</span>
+                            </div>
+                            <div>
+                                <span class="las la-heart"></span>
+                            </div>
+                        </div>
+
+
+            </div> 
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Belog</h3>
+                            <button>See all <span class="las la-arrow-right"></span></button> 
+
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                       <tr>
+                                        <td>Status</td>
+                                        <td>Email</td>
+                                        <td>Role</td>
+                                       
+                                        <td>Created Date</td>
+                                        <td>options</td>
+                                       </tr>
+                                </thead>
+                                <tbody id="blogs">
+
+                                </tbody>
+                                   </table>
+   
+                           </div>
+                           
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+              
+                </div>
+        </main>
+        </div>
+        <script>
+            //let update = document.getElementById('update');
+
+            
+            function getdataOnIndex()  {
+               var posts_div = document.getElementById("blogs");
+               var dataToDisplay = "";
+               var requestOptions = {
+                   method: 'GET',
+                   redirect: 'follow'
+                 };
+                 fetch("https://my-bland.herokuapp.com/api/v1/users", requestOptions)
+                          .then(response => response.json())
+                          .then(result => {
+                              // console.log(result.data.blogs)
+                                  result.data.users.forEach(element=>{
+                                      dataToDisplay += `
+                            
+                                      <tr>
+                                        <td><span class="status orange"><spn></td>
+                                        <td>${element.email}</td>
+                                        
+                                        <td>${element.role}</td>
+                                        <td>
+                                            ${element.createdAt}
+                                            </td>
+                                        
+                                        <td>
+                                            <a href="update.html" onclick="storeData('${element.id}'} >  <button"><span class="las la-edit"></span></button></a>
+                                        <a><button><span class="las la-eye"></span></button></a>
+                                       <a> <button><span class="las la-trash"></span></button></td></a>
+                                        </tr>
+                                  `;
+                                 
+                            })
+                                posts_div.innerHTML = dataToDisplay;
+                              //  console.log(blogs)
+                          })
+                          .catch(error => console.log('error', error));
+                          
+                } window.onload=getdataOnIndex();
+       
+          </script> 
+          <script src="auth.js"></script>
+     
+    </body>
+</html>

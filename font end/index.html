@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>my web</title>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CSS  -->
+        <link rel="stylesheet" href="style.css">
+            
+        
+    </head>
+    <body>
+        <center>
+        <nav>
+            <div class="nav-bar">
+               
+                <span class="logo navLogo"><a href="#">Jules hb 250</a></span>
+    
+                <div class="menu">
+                    
+                    <ul class="nav-links">
+                         <li><a href="index.html">Home</a></li>
+                        <li><a href="#sk">Skill</a></li>
+                        <li><a href="#pr">Services</a></li>
+                        <li><a href="#cnt">Contact mes</a></li>
+                        <li><a href="blog.html">My blog</a></li>
+                    </ul>
+                </div>
+    
+               
+            </div>
+        </nav>
+        
+    </div>
+</div> 
+
+<div class="about" id="bout">
+    
+    <h1>Hi 🙌!<br>I am Jules </h1>
+    <img src="ll.jpg">
+    <p class="par">I am software Developer 
+        <br>I am interested in JAvaScript, HTML, PHP and sql. 
+        <br>I am Product Designer with 5 years experience, 
+        <br>focusing in User Interface and User Experience. 
+        <br>I am also a proud dog dad, and a board game enthusiast.
+    <hr></p>
+        
+    
+    
+                    </div>
+
+        <h1><center>Skills 📚</center></h1>
+
+<div class="skills" id="sk">
+    <p class="par">I have skills in different languages
+        <br>HTML (Hyper Tet Markup Language),
+        <br>JS (Javascript),
+        <br>PHP (Hypertext Preprocessor), 
+        <br>Structured Query Language (SQL) and
+        <br>Cascading Style Sheets (CSS).
+    </p>
+    <img src="sk.png" class="img">
+    <p class="par">I have skills in different languages
+        <br>HTML (Hyper Tet Markup Language),
+        <br>JS (Javascript),
+        <br>PHP (Hypertext Preprocessor), 
+        <br>Structured Query Language (SQL) and
+        <br>Cascading Style Sheets (CSS).
+    </p>
+    
+    
+
+</div>
+<h1><center>Our servises🧑‍💻</center></h1>
+<div class="project" id="pr">
+    
+    <div class="project" id="pr"></div>
+    
+    <p>
+        <img src="dm.png"><br>
+        <b>Digital Marketing</b>
+        <br>
+        
+        <br>Digital Marketing Services At Your Fingertips Social Media Management, Social Media Advertising, PPC Management, Search Engine Optimization, Email & Content  Marketing
+
+        
+        <br>
+        <button><a>LEARN MORE</a></button> 
+        </p>
+
+        <p><img src="host.png"><br>
+            <b>Web Design & Hosting</b>
+            <br>
+            
+            <br>Get online fast. From simple to complex, our website design team will create, host, and update the site for you. From domain names, hosting, web design, SSL security, email addresses, SEO, and logo design
+            <br>
+            <button><a>LEARN MORE</a></button> 
+            </p>
+
+            <p><img src="sd.png"><br>
+                <b>Software Development</b>
+                <br>
+                <br>
+            
+                
+                From consulting to the end-to-end development of scalable solutions, we deliver software development services that fit your project requirements and business needs.
+                <br>
+                <button><a>LEARN MORE</a></button> 
+                </p>
+                <p><img src="net.png"><br>
+                    <b>Networking Solutions & Services</b>
+                    <br>
+                    
+                    <br>We evaluate customer’s requirements and determine the kind of ideal networking solutions. We deploy best and branded equipment with top-notch networking infrastructure to achieve optimum performance.
+                    <br>
+                    <button><a>LEARN MORE</a></button> 
+                    </p>
+
+        
+</div>
+<center>
+<div class="contact" id="cnt">
+    <h1>contact ☎️</h1>
+    
+<div class="form">
+    <h2>text me</h2>
+    <form id="post">
+    <input type="name" name="name" placeholder="Enter fullName Here" id="fullName">
+    <input type="email" name="email" placeholder="Enter Email Here" id="email">
+    <input type="Text" name="message" placeholder="Message" id="message">
+    <button class="btnn" id="addPost">Send</button>
+    <p>Also follow me on:</p>
+    <div class="icons">
+        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-google"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
+    </form>
+    </div>
+    
+
+</div>
+<p class="cnt"><b>Contact me</b>
+    <br>
+    
+    <br>📌 Rubavu /Gisenyi/Rwanda
+    <br>☎️ +250 789 028 283 
+    <br>✉️ habaruremajules@gmail.com
+     
+    </p>
+</div>
+</center>
+        </center>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+
+            
+let fullName = document.getElementById('fullName');
+let email = document.getElementById('email');
+let message = document.getElementById('message');
+
+
+
+const addPost = async ( ) =>{
+fetch("https://my-bland.herokuapp.com/api/v1/messages", {
+method: 'POST', 
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({fullName:fullName.value, email:email.value, message:message.value})
+});
+
+};
+
+
+document.getElementById('addPost').addEventListener
+('click', (e) => { e.preventDefault()
+
+addPost(); 
+
+alert("Thank 🙌 You Your Message sent you cam received an email");
+location.href = "index.html#";
+})
+
+</script>
+
+
+    
+</body>
+</html>

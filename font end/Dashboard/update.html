@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <TItle>Adimin</TItle>
+   
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+        <link rel="stylesheet" href="dstyle.css">
+
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <h1></span>Jules hb 250</h1>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dash.html"><span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="active"><span class="las la-edit"></span>
+                        <span>Uppdate</span></a>
+                    </li>
+                   
+                    <li>
+                        <a href="userControll.html" class=""><span class="las la-users"></span>
+                        <span>UserControl</span></a>
+                    </li>
+                    <li>
+                        <a href="mes.html"><span class="las la-comment"></span>
+                        <span>Messages</span></a>
+                    </li>
+                    <li>
+                        <a href="update.html"><span class="las la-user-circle"></span>
+                        <span>Users</span></a>
+                    </li>
+                    <li>
+                        <a href="/index.html"><span class="las la-home"></span>
+                        <span>View page</span></a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="logout()"><span class="las la-sign"></span>
+                        <span>Log out</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+        <header>
+            <h1>
+                <label for="">
+                  <span class="las la-bars"></span> 
+                </label>
+                Dashboard
+            </h1>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="search here"/>
+
+            </div>
+            <div class="user-wrapper">
+                <img src="kk.jpg" width="30px" alt="Adimin">
+                <div>
+                    <h4>Jules hb</h4>
+                    <small>Adimin</small>
+                </div>
+
+            </div>
+        </header>
+        <main>
+            <div class="cards">
+                <form id="post">
+                <div class="form">
+                    <h2>Uppdate blog</h2>
+                    <p>Uppdate title</p>
+                    <input type="Text" name="title" id="title">
+                
+                    <br>
+                    <p>Uppdate photo</p>
+                    <input type="Text" name="photo" id="photo">
+                
+                    <br>
+                    <p>Uppdate body</p>
+                    <input type="Text" name="body" id="body">
+                
+                    <br>
+                    <p>Uppdate description</p>
+                    <textarea name="content" rows="10" cols="30" id="description">
+                        
+                        </textarea>
+                    <button class="btnn" id="update">Uppdate</button>
+                </div>
+                </form>
+                
+                
+
+
+            
+        </main>
+        </div>
+       <script>
+
+
+const id = location.hash.slice(1);
+console.log(id);
+    let Title = document.getElementById("title");
+    let Photo = document.getElementById("photo");
+    let Boy = document.getElementById("body");
+    let Description = document.getElementById("description");
+const activeToken = localStorage.getItem("jwtToken");
+fetch(`https://my-bland.herokuapp.com/api/v1/blogs/${id}`)
+  .then((response) => response.json())
+  .then((res) => {
+    console.log(res.data.blog);
+
+   
+
+    Title.value = res.data.blog.title;
+    Photo.value = res.data.blog.photo;
+    Boy.value = res.data.blog.body;
+    Description.value = res.data.blog.description;
+
+    
+
+
+    let buttonupdate = document.getElementById("update");
+    
+    buttonupdate.addEventListener("click", (e) => {
+      e.preventDefault();
+      fetch(`https://my-bland.herokuapp.com/api/v1/blogs/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+         Authorization: `bearer ${activeToken}`,
+        },
+        body: JSON.stringify({
+          title: document.getElementById("title").value,
+          photo: document.getElementById("photo").value,
+          body: document.getElementById("body").value,
+          description: document.getElementById("description").value,
+        }),
+      });
+
+      alert("Data updated");
+      location.href = "dash.html#";
+      
+      
+    });
+  });
+       </script>
+       <script src="auth.js"></script>
+        
+    </body>
+</html>
