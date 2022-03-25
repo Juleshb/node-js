@@ -11,7 +11,7 @@
     <body>
         <div class="sidebar">
             <div class="sidebar-brand">
-                <h1><!--<span class="lab la-accusoft">--></span>Jules hb 250</h1>
+                <h1>Jules hb 250</h1>
             </div>
             <div class="sidebar-menu">
                 <ul>
@@ -38,7 +38,7 @@
                         <span>Users</span></a>
                     </li>
                     <li>
-                        <a href="/index.html"><span class="las la-home"></span>
+                        <a href="../index.html"><span class="las la-home"></span>
                         <span>View page</span></a>
                     </li>
                     <li>
@@ -166,7 +166,8 @@
                  fetch("https://my-bland.herokuapp.com/api/v1/users", requestOptions)
                           .then(response => response.json())
                           .then(result => {
-                              // console.log(result.data.blogs)
+                              
+                             
                                   result.data.users.forEach(element=>{
                                       dataToDisplay += `
                             

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read more btn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Read more Read less</h1>
+    <div class="card">
+        <img src="./image/izzy-gerosa-RgplfXbxLFs-unsplash.jpg" alt="">
+        <div class="card-body">
+            <h2>Forest</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro non facere cupiditate incidunt
+                repudiandae? Et neque esse voluptatem odio nisi!
+                <span id="dots">......  </span>
+                <div id="more">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                         Nisi ipsa, iure ipsam facilis eligendi eveniet?</p>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                             Optio architecto, illum eos porro non amet soluta dicta nulla voluptatem rerum.</p>
+                </div>
+            
+            </p>
+            <button onclick="readmore()" id="btn">Read more</button>
+        </div>
+    </div>
+    <script>
+        function readmore(){
+            let dots = document.getElementById("dots");
+            let moretext = document.getElementById('more');
+            let btn = document.getElementById('btn');
+
+            if(dots.style.display === "none"){
+                dots.style.display ="inline";
+                btn.innerHTML="Read more";
+                moretext.style.display='none';
+            }else{
+                dots.style.display='none';
+                btn.innerHTML ="Read less";
+                moretext.style.display='inline';
+            }
+        }
+    </script>
+</body>
+
+</html>

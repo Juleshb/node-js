@@ -1,5 +1,5 @@
 
-import chai from 'chai';
+import chai, { should } from 'chai';
 import chaiHttp from 'chai-http';
 import express from 'express';
 import server from '../index.js';
@@ -18,6 +18,10 @@ describe("GET /api/v1/users", () =>{
         chai.request(server)
         .get("api/v1/users")
         .end((err, response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('object');
+            
+
            
         done();
 

@@ -4,7 +4,7 @@ function isLoginedIn()
     let token = localStorage.getItem("token");
     if(token==null)
     {
-        location.href = '/login.html'
+        location.href = '../login.html'
     }
 }
 isLoginedIn()
@@ -15,4 +15,4 @@ isLoginedIn()
   window.location.reload();
 }
 
-document.getElementById("logoutBtn").addEventListener("click",ev=>logout())
+//document.getElementById("logoutBtn").addEventListener("click",ev=>logout())

@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <TItle>Adimin</TItle>
-    
+   
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     
         <link rel="stylesheet" href="dstyle.css">
@@ -12,7 +12,7 @@
     <body>
         <div class="sidebar">
             <div class="sidebar-brand">
-                <h1><!--<span class="lab la-accusoft">--></span>Jules hb 250</h1>
+                <h1></span>Jules hb 250</h1>
             </div>
             <div class="sidebar-menu">
                 <ul>
@@ -22,12 +22,12 @@
                     </li>
                     
                     <li>
-                        <a href="postblog.html" ><span class="las la-clipboard-list"></span>
-                        <span>Post Blog</span></a>
+                        <a href="#" class="active"><span class="las la-edit"></span>
+                        <span>Delete</span></a>
                     </li>
-                    
+                   
                     <li>
-                        <a href=""  class="active"><span class="las la-users"></span>
+                        <a href="userControll.html" class=""><span class="las la-users"></span>
                         <span>UserControl</span></a>
                     </li>
                     <li>
@@ -35,7 +35,7 @@
                         <span>Messages</span></a>
                     </li>
                     <li>
-                        <a href="users.html"><span class="las la-user-circle"></span>
+                        <a href="update.html"><span class="las la-user-circle"></span>
                         <span>Users</span></a>
                     </li>
                     <li>
@@ -75,73 +75,82 @@
             <div class="cards">
                 <form id="post">
                 <div class="form">
-                    
-                    <input type="Text" name="name" placeholder="Enter name" id="name">
-                    <input type="email" name="email" placeholder="Enter Email" id="email"><br><br>
-                    Role<select name="role" id="role">
-                        <option value="adimin">adimin</option>
-                        <option value="user">user</option>
-                    </select>
-                   
-                    <input type="password" name="password" placeholder="password" id="password">
-                    <input type="password" name="confirmPassword" placeholder="confirm Password"id="confirmPassword">
-                   
+                    <h2>Are you sure you want to delete this blog</h2>
                     <br>
+                    <p>Title:
+                    <input type="Text" name="title" id="title"></p>
+                
                     
-                    <button class="btnn" id="addPost">Publish</button>
+                    <p>Photo:
+                    <input type="Text" name="photo" id="photo"></p>
+                
+                   
+                    <p>Body:
+                    <input type="Text" name="body" id="body"></p>
+                
+                    <br>
+                    <p>Description:
+                    <textarea name="content" rows="10" cols="30" id="description">
+                        
+                        </textarea></p>
+                    <button class="btnn" id="update">Delete</button>
+                   
                 </div>
                 </form>
                 
                 
 
 
-            </div> 
             
         </main>
         </div>
-        <script>
-
-        
+       <script>
 
 
-                
-            
-            
-            let name = document.getElementById('name');
-            let email = document.getElementById('email');
-            let role = document.getElementById('role');
-            let password = document.getElementById('password');
-            let confirmPassword = document.getElementById('confirmPassword');
-         
+const id = location.hash.slice(1);
+console.log(id);
+    let Title = document.getElementById("title");
+    let Photo = document.getElementById("photo");
+    let Boy = document.getElementById("body");
+    let Description = document.getElementById("description");
+const activeToken = localStorage.getItem("jwtToken");
+fetch(`https://my-bland.herokuapp.com/api/v1/blogs/${id}`)
+  .then((response) => response.json())
+  .then((res) => {
+    console.log(res.data.blog);
 
-const addPost = async ( ) =>{
-    fetch("https://my-bland.herokuapp.com/api/v1/users", {
-       method: 'POST', 
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify({name:name.value, email:email.value, role:role.value,password:password.value, confirmPassword:confirmPassword.value})
-   });
-
-  //const data = await response.json( );
-
-  // now do whatever you want with the data  
-   //console.log(data);
    
-};
+
+    Title.value = res.data.blog.title;
+    Photo.value = res.data.blog.photo;
+    Boy.value = res.data.blog.body;
+    Description.value = res.data.blog.description;
+
+    
 
 
-document.getElementById('addPost').addEventListener
-        ('click', (e) => { e.preventDefault()
+    let buttonupdate = document.getElementById("update");
+    
+    buttonupdate.addEventListener("click", (e) => {
+      e.preventDefault();
+      fetch(`https://my-bland.herokuapp.com/api/v1/blogs/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+         Authorization: `bearer ${activeToken}`,
+        },
+        
+      });
 
-            addPost(); 
-            
-            alert("Users Added");
-      location.href = "users.html#";
-        })
+      alert("Belog deleted");
+      location.href = "dash.html#";
       
-</script>
-<script src="auth.js"></script>
-       
+      
+    });
+    
+  });
+       </script>
+       <script src="auth.js"></script>
+        
     </body>
 </html>

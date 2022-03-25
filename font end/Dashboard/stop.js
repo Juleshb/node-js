@@ -4,7 +4,7 @@ function logout() {
             if (user) {
 
             } else {
-                location.href = "/login.html"
+                location.href = "../login.html"
             }
         })
     })

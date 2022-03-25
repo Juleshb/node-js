@@ -38,7 +38,7 @@
                         <span>Users</span></a>
                     </li>
                     <li>
-                        <a href="/index.html"><span class="las la-home"></span>
+                        <a href="../index.html"><span class="las la-home"></span>
                         <span>View page</span></a>
                     </li>
                     <li>
@@ -181,8 +181,11 @@
                                         <td>
                                             <a href="update.html#${element._id}">
                                          <span class="las la-edit"></span></a>
-                                        <a><span class="las la-eye"></span></a>
-                                        <a><span class="las la-trash"></span></a></td>
+                                        <a href="viewpost.html#${element._id}">
+                                        <span class="las la-eye"></span></a>
+                                        <a href="delete.html#${element._id}">
+                                        <span class="las la-trash"></span></a>
+                                       </td>
                                         </tr>
                                   `;
                                  
@@ -201,6 +204,7 @@
                
           </script> 
           <script src="auth.js"></script>
+          <script src="delete.js"></script>
      
     </body>
 </html>
